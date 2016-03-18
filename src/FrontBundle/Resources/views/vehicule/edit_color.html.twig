@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier la couleur</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+
+    <ul>
+        <li>
+            <a href="{{ path('vehicule_index') }}">Retour à l'acceuil</a>
+        </li>
+    </ul>
+
+{% endblock %}

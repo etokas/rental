@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Vehicule</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vehicule.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ vehicule.nom }}</td>
+            </tr>
+            <tr>
+                <th>Disponibilité</th>
+                <td>{% if vehicule.isDisponible %}Oui{% else %}Non{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vehicule_index') }}">Retour à l'acceuil</a>
+        </li>
+        <li>
+            <a href="{{ path('vehicule_edit', { 'id': vehicule.id }) }}">Modifier</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Effacer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

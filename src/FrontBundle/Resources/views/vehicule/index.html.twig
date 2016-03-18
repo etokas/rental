@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste de vehicule</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Diponibilité</th>
+                <th>Gamme</th>
+                <th>Couleur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicule in vehicules %}
+            <tr>
+                <td>{{ vehicule.nom }}</td>
+                <td>{% if vehicule.isDisponible %}Oui{% else %}Non{% endif %}</td>
+                <td>{{ vehicule.gamme.nom }}</td>
+                <td>{{ vehicule.color }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('vehicule_show', { 'id': vehicule.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('vehicule_edit', { 'id': vehicule.id }) }}">Modifier</a>
+                        </li>
+                        {% if vehicule.gamme.nom == "TieFighter" %}
+                            <li>
+                                <a href="{{ path('vehicule_edit_color', { 'id': vehicule.id }) }}">Modifier la couleur</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('vehicule_new') }}">Creer un vehicule</a>
+        </li>
+    </ul>
+
+    <ul>
+        <li>
+            <a href="{{ path('front_homepage') }}">Acceuil admin</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste de reservation</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date de debut</th>
+                <th>Utilsiateur</th>
+                <th>Date de fin</th>
+                <th>Voiture</th>
+                <th>Surclassement</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{% if reservation.startDate %}{{ reservation.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ reservation.user.lastname }}</td>
+                <td>{% if reservation.endDate %}{{ reservation.endDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ reservation.voiture.nom }}</td>
+                <td>{% if reservation.surclassement %}Oui{% else %}Non{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservation_show', { 'id': reservation.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservation_edit', { 'id': reservation.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if nombre %}
+
+        <p>Aucune voiture / Aucun utilisateur</p>
+
+    {% else %}
+    <ul>
+        <li>
+            <a href="{{ path('reservation_new') }}">Creer un utilisateur</a>
+        </li>
+    </ul>
+    {% endif %}
+
+
+    <ul>
+        <li>
+            <a href="{{ path('front_homepage') }}">Acceuil admin</a>
+        </li>
+    </ul>
+{% endblock %}

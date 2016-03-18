@@ -1,0 +1,145 @@
+<?php
+
+namespace FrontBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Gamme
+ *
+ * @ORM\Table(name="gamme")
+ * @ORM\Entity(repositoryClass="FrontBundle\Repository\GammeRepository")
+ */
+class Gamme
+{
+    const HAUT = 1;
+
+    const BAS = 0;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    protected $nom;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="classement", type="integer")
+     */
+    protected $classement;
+
+    /**
+     * @ORM\OneToMany(targetEntity="FrontBundle\Entity\Vehicule", mappedBy="gamme")
+     */
+    protected $vehicules;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     *
+     * @return Gamme
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set classement
+     *
+     * @param integer $classement
+     *
+     * @return Gamme
+     */
+    public function setClassement($classement)
+    {
+        $this->classement = $classement;
+
+        return $this;
+    }
+
+    /**
+     * Get classement
+     *
+     * @return integer
+     */
+    public function getClassement()
+    {
+        return $this->classement;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->vehicules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add vehicule
+     *
+     * @param \FrontBundle\Entity\Vehicule $vehicule
+     *
+     * @return Gamme
+     */
+    public function addVehicule(\FrontBundle\Entity\Vehicule $vehicule)
+    {
+        $this->vehicules[] = $vehicule;
+
+        return $this;
+    }
+
+    /**
+     * Remove vehicule
+     *
+     * @param \FrontBundle\Entity\Vehicule $vehicule
+     */
+    public function removeVehicule(\FrontBundle\Entity\Vehicule $vehicule)
+    {
+        $this->vehicules->removeElement($vehicule);
+    }
+
+    /**
+     * Get vehicules
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVehicules()
+    {
+        return $this->vehicules;
+    }
+}

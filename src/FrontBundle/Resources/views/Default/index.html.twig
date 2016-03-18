@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Admin panel</h1>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_index') }}">Tous les utilisateurs</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="{{ path('vehicule_index') }}">Tous les vehicules</a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="{{ path('reservation_index') }}">Toutes les Reservations</a>
+        </li>
+    </ul>
+
+
+
+{% endblock %}
+

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier vehicule</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Modifier" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('vehicule_index') }}">Retour à l'acceuil</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Effacer">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

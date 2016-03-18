@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Creer une reservation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Creer" />
+    {{ form_end(form) }}
+    <button id="surclassement">Surclasser ?</button>
+
+
+    <ul>
+        <li>
+            <a href="{{ path('reservation_index') }}">Retour à l'acceuilt</a>
+        </li>
+    </ul>
+{% endblock %}
